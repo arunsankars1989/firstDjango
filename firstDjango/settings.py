@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os.path
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -40,7 +41,8 @@ INSTALLED_APPS = [
 ]
 
 EXTERNAL_APPS = [
-    'home.apps.HomeConfig'
+    "home.apps.HomeConfig",
+    "vege.apps.VegeConfig",
 ]
 
 INSTALLED_APPS += EXTERNAL_APPS
@@ -60,8 +62,7 @@ ROOT_URLCONF = "firstDjango.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / 'templates']
-        ,
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -82,12 +83,12 @@ WSGI_APPLICATION = "firstDjango.wsgi.application"
 
 DATABASES = {
     "default": {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django',
-        'USER': 'root',
-        'PASSWORD': 'KanDiv@2016',
-        'HOST': '127.0.0.1',
-        'PORT': '3306'
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "django",
+        "USER": "root",
+        "PASSWORD": "KanDiv@2016",
+        "HOST": "127.0.0.1",
+        "PORT": "3306",
     }
 }
 
