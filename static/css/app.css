@@ -1,0 +1,26 @@
+label.error {
+    color: red;
+    font-size: 12px;
+}
+
+#animationContainer {
+    position: fixed;
+    z-index: 999;
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#animationContainer #animationGif {
+    width: 100px;
+}
+
+#loadingText {
+    margin-top: 35px;
+    font-size: 16px;
+    color: #333;
+    position: absolute;
+}

@@ -1,23 +1,28 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
-    <form class="col-6 mx-auto card p-3 mt-3 shadow-lg" method="POST" enctype="multipart/form-data">
+    <form id="recipeForm" class="col-6 mx-auto card p-3 mt-3 shadow-lg">
         <h2>Add Recipe</h2>
         <hr>
         {% csrf_token %}
         <div class="mb-3">
             <label for="recipeName" class="form-label">Recipe Name</label>
-            <input type="text" class="form-control" id="recipeName" name="recipe_name">
+            <input type="text" class="form-control" id="recipeName" name="recipeName" required>
         </div>
         <div class="mb-3">
             <label for="recipeDescription" class="form-label">Recipe Description</label>
-            <textarea class="form-control" id="recipeDescription" name="recipe_description"></textarea>
+            <textarea class="form-control" id="recipeDescription" name="recipeDescription" required></textarea>
         </div>
         <div class="mb-3">
             <label for="recipeImage" class="form-label">Recipe Image</label>
-            <input type="file" class="form-control" id="recipeImage" name="recipe_image">
+            <input type="file" class="form-control" id="recipeImage" name="recipeImage" required>
         </div>
         <button type="submit" class="btn btn-success float-end">Add</button>
     </form>
 
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'js/plugins/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'js/vege.js' %}"></script>
 {% endblock %}
