@@ -1,0 +1,62 @@
+{% extends 'login_base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="login-container">
+        <div class="card col-7">
+            <form id="signUpForm">
+                <div class="card-header text-center">
+                    Sign Up
+                </div>
+                <div class="card-body">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="firstName" class="form-label">First Name<i class="required">*</i></label>
+                                <input type="text" id="firstName" name="firstName" class="form-control" required>
+                            </div>
+                            <div class="col-6">
+                                <label for="lastName" class="form-label">Last Name<i class="required">*</i></label>
+                                <input type="text" id="lastName" name="lastName" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email<i class="required">*</i></label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username<i class="required">*</i></label>
+                        <input type="text" id="username" name="username" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password<i class="required">*</i></label>
+                        <input type="password" id="password" name="password" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirmPassword" class="form-label">Confirm Password<i
+                                class="required">*</i></label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" class="form-control"
+                               required>
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <div>
+                        <button type="button" class="btn btn-danger" id="resetSignUp">Reset</button>
+                        <button class="btn btn-success">Submit</button>
+                    </div>
+                    <div class="mb-2">
+                        Already have account? <a href="/">Sign In</a>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'js/plugins/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'js/login.js' %}"></script>
+{% endblock %}

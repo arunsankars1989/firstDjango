@@ -1,28 +1,73 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block styles %}
+    <link href="{% static 'css/plugins/datatables.bootstrap.min.css' %}" rel="stylesheet">
+{% endblock %}
 {% block content %}
-
-    <form id="recipeForm" class="col-6 mx-auto card p-3 mt-3 shadow-lg">
-        <h2>Add Recipe</h2>
-        <hr>
+    <div id="csrf">
         {% csrf_token %}
-        <div class="mb-3">
-            <label for="recipeName" class="form-label">Recipe Name</label>
-            <input type="text" class="form-control" id="recipeName" name="recipeName" required>
+    </div>
+
+    <div class="w-100 text-center">
+        <button type="button" class="btn btn-success" id="recipeModalBtn" data-bs-toggle="modal"
+                data-bs-target="#recipeModal">Add Recipe
+        </button>
+    </div>
+
+    <table id="recipeTable" class="display" style="width:100%">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+    </table>
+
+    <div class="modal fade" id="recipeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="recipeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="recipeForm">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="recipeModalLabel">Add Recipe</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" id="id" value="">
+                        <div class="mb-3">
+                            <label for="recipeName" class="form-label">Recipe Name</label>
+                            <input type="text" class="form-control" id="recipeName" name="recipeName">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipeDescription" class="form-label">Recipe Description</label>
+                            <textarea class="form-control" id="recipeDescription" name="recipeDescription"
+                            ></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipeImage" class="form-label">Recipe Image</label>
+                            <input type="file" class="form-control" id="recipeImage" name="recipeImage" required>
+                        </div>
+                        <div class="mb-3 hidden w-100 text-center" id="recipeImageDisp">
+                            <img src="" alt="" class="w-100 recipePreview">
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" id="recipeFormReset">Reset</button>
+                        <button type="submit" class="btn btn-success" id="recipeFormSubmit">Add</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="mb-3">
-            <label for="recipeDescription" class="form-label">Recipe Description</label>
-            <textarea class="form-control" id="recipeDescription" name="recipeDescription" required></textarea>
-        </div>
-        <div class="mb-3">
-            <label for="recipeImage" class="form-label">Recipe Image</label>
-            <input type="file" class="form-control" id="recipeImage" name="recipeImage" required>
-        </div>
-        <button type="submit" class="btn btn-success float-end">Add</button>
-    </form>
+    </div>
 
 {% endblock %}
 {% block scripts %}
+    <script src="{% static 'js/plugins/datatables.bootstrap.min.js' %}"></script>
     <script src="{% static 'js/plugins/jquery.validate.min.js' %}"></script>
     <script src="{% static 'js/vege.js' %}"></script>
 {% endblock %}

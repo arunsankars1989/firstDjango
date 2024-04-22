@@ -3,29 +3,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ page }}</title>
+    <title>{{ title }}</title>
     <link href="{% static 'css/plugins/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/plugins/toastr.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/plugins/sweetalert2.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/plugins/fontawesome.min.css' %}" rel="stylesheet">
-    {% block styles %}
-    {% endblock %}
     <link href="{% static 'css/app.css' %}" rel="stylesheet">
-
-
 </head>
 <body>
-<div id="animationContainer">
-    <div id="animationGif"></div>
-    <div id="loadingText">Please wait...</div>
-</div>
-{% include 'header.html' %}
 <div class="container">
-    <h2>{{ pageTitle }}</h2>
     {% block content %}
+
     {% endblock %}
 </div>
-{% include 'footer.html' %}
 <script src="{% static 'js/plugins/jquery3.7.1.min.js' %}"></script>
 <script src="{% static 'js/plugins/popper.min.js' %}"></script>
 <script src="{% static 'js/plugins/bootstrap.min.js' %}"></script>
@@ -33,7 +22,6 @@
 <script src="{% static 'js/plugins/lottie.min.js' %}"></script>
 <script src="{% static 'js/plugins/toastr.min.js' %}"></script>
 <script src="{% static 'js/app.js' %}"></script>
-
 {% block scripts %}
 {% endblock %}
 </body>
