@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 EXTERNAL_APPS = [
     "home.apps.HomeConfig",
     "vege.apps.VegeConfig",
+    "login.apps.LoginConfig",
 ]
 
 INSTALLED_APPS += EXTERNAL_APPS

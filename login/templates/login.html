@@ -1,0 +1,39 @@
+{% extends 'login_base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="login-container">
+        <div class="card col-4">
+            <form id="loginForm" method="post">
+                <div class="card-header text-center">
+                    Sign In
+                </div>
+                <div class="card-body">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" id="username" name="username" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" id="password" name="password" class="form-control" required>
+                    </div>
+
+                </div>
+                <div class="card-footer text-center">
+                    <div>
+                        <button class="btn btn-success">Submit</button>
+                    </div>
+                    <div class="mb-2">
+                        Don't have account?<a href="/register"> Sign Up</a>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'js/plugins/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'js/login.js' %}"></script>
+{% endblock %}

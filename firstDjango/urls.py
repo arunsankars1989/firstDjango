@@ -22,7 +22,8 @@ from django.urls import path, include
 from firstDjango import settings
 
 urlpatterns = [
+    path("", include("login.urls")),
     path("admin/", admin.site.urls),
-    path("", include("home.urls")),
+    path("home/", include("home.urls")),
     path("vege/", include("vege.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
