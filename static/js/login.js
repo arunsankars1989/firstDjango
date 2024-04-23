@@ -1,6 +1,9 @@
 $(document).ready(function () {
     window.login = {
         form: $('#loginForm'),
+        resetLoginForm: () => {
+            login.form[0].reset()
+        },
         signUpForm: $('#signUpForm'),
         resetSignUpForm: () => {
             login.signUpForm[0].reset();
@@ -8,7 +11,26 @@ $(document).ready(function () {
         submitLogin: (form, e) => {
             e.preventDefault();
             const formData = new FormData(form);
-            console.log('formData: ', formData);
+
+            $.ajax({
+                url: '/submit-login/',
+                type: 'POST',
+                dataType: 'json',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (res) {
+                    if (res.status === 'success') {
+                        login.resetLoginForm();
+                        window.location.href = '/vege';
+                        return;
+                    }
+                    app.showToastr(res.status, res.message);
+                },
+                error: function () {
+                    app.showToastr('error', 'Failed to login!');
+                }
+            });
         },
         submitRegister: (form, e) => {
             e.preventDefault();

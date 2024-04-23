@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 from django.db import IntegrityError
 from django.forms import model_to_dict
@@ -8,12 +9,14 @@ from django.views.decorators.http import require_POST, require_GET
 from vege.models import Recipe
 
 
+@login_required
 @require_GET
 def recipes(request):
     context = {"page": "Recipes", "pageTitle": "Recipes"}
     return render(request, "recipes.html", context)
 
 
+@login_required
 @require_POST
 def save_recipe(request):
     data = request.POST
@@ -38,6 +41,7 @@ def save_recipe(request):
         return JsonResponse({"status": "error", "message": "Failed to save recipe"})
 
 
+@login_required
 @require_GET
 def get_recipe(request):
     all_recipes = Recipe.objects.all()
@@ -45,6 +49,7 @@ def get_recipe(request):
     return JsonResponse({"data": data}, safe=False)
 
 
+@login_required
 @require_GET
 def get_recipe_by_id(request, id):
     try:
@@ -59,6 +64,7 @@ def get_recipe_by_id(request, id):
         return JsonResponse({"status": "error", "message": "Recipe not found"})
 
 
+@login_required
 def update_recipe(request, id):
     if request.method == "PUT":
         try:
@@ -79,6 +85,7 @@ def update_recipe(request, id):
         return JsonResponse({"status": "error", "message": "Something went wrong!"})
 
 
+@login_required
 def delete_recipe(request, id):
     if request.method == "DELETE":
         try:
