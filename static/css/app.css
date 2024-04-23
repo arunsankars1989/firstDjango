@@ -53,3 +53,8 @@ label.error {
 .required {
     color: red !important;
 }
+
+.dropdown-menu[data-bs-popper] {
+    right: 0 !important;
+    left: unset !important;
+}

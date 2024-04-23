@@ -4,6 +4,7 @@
     <link href="{% static 'css/plugins/datatables.bootstrap.min.css' %}" rel="stylesheet">
 {% endblock %}
 {% block content %}
+    {{ request.user.email }}
     <div id="csrf">
         {% csrf_token %}
     </div>
